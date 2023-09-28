@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/ujikstark/todo-rest-api-nodejs/issues"
   },
-  "homepage": "https://github.com/ujikstark/todo-rest-api-nodejs#readme"
+  "homepage": "https://github.com/ujikstark/todo-rest-api-nodejs#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3",
+    "uuid": "^9.0.1"
+  }
 }
