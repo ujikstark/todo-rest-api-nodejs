@@ -1,0 +1,22 @@
+{
+  "name": "simple-todo-api",
+  "version": "1.0.0",
+  "description": "Simple TODO REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ujikstark/todo-rest-api-nodejs.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Ahmad Fauzi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ujikstark/todo-rest-api-nodejs/issues"
+  },
+  "homepage": "https://github.com/ujikstark/todo-rest-api-nodejs#readme"
+}
