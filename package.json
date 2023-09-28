@@ -4,7 +4,9 @@
   "description": "Simple TODO REST API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "prod": "NODE_ENV=production node index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
