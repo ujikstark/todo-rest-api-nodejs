@@ -35,6 +35,15 @@ database.once('connected', () => {
 
 const app = express();
 
+// Import userRoutes
+const userRoutes = require('./routes/userRoutes');
+
+// set content-type application/json
+app.use(express.json());
+
+// Use the userRoutes for '/api' path
+app.use('/api', userRoutes);
+
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
