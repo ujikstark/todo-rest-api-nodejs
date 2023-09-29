@@ -6,6 +6,12 @@ const router = express.Router();
 // Import the user controller
 const todoController = require('../controllers/todoController');
 
+// Import middleware
+const mw = require('../middleware/my-middleware');
+
+// Apply middleware to all method
+router.all('/todos', mw.authenticateToken);
+
 // Define a route to get all todos
 router.get('/todos', todoController.getTodos);
 

@@ -6,6 +6,12 @@ const router = express.Router();
 // Import the user controller
 const userController = require('../controllers/userController');
 
+// Import middleware
+const mw = require('../middleware/my-middleware');
+
+// Apply GET middleware
+router.get('/users', mw.authenticateToken);
+
 // Define a route to get all users
 router.get('/users', userController.getUsers);
 

@@ -35,21 +35,27 @@ database.once('connected', () => {
 
 const app = express();
 
+
 // Import userRoutes
 const userRoutes = require('./routes/userRoutes');
 
 // Import todoRoutes
 const todoRoutes = require('./routes/todoRoutes');
 
+// Import loginRoutes
+const loginRoutes = require('./routes/loginRoutes');
+
 // set content-type application/json
 app.use(express.json());
+
+// Use the loginRoutes for '/' path
+app.use('/', loginRoutes);
 
 // Use the userRoutes for '/api' path
 app.use('/api', userRoutes);
 
 // Use the todoRoutes for '/api' path
 app.use('/api', todoRoutes);
-
 
 
 app.listen(port, () => {
