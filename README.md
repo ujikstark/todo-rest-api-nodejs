@@ -100,6 +100,7 @@ The API offers the following endpoints for managing users and todos:
 - **Description**: This endpoint retrieves a list of all users available in the database.
 
 - **HTTP Method**: GET
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
 
 - **Response**: The response will be an array of user objects, each containing `_id`, `name`, and `username`.
 
@@ -124,6 +125,8 @@ Content-Type: application/json
 ]
 ```
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 404 Not Found
     - Content: `{message: 'Users not found'}`
   - Status Code: 500 Internal Server Error
@@ -180,6 +183,8 @@ Content-Type: application/json
 
 - **URL Parameter**: The `id` parameter in the URL represents the `_id` of the user to retrieve.
 
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
+
 - **Response**: The response will be the user object with the matching ID, including `_id`, `name`, and `username`.
 
 - **Example Request**: GET /users/6152f0f5a7b6d3f582ed85da
@@ -198,6 +203,8 @@ Content-Type: application/json
 ```
 
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 404 Not Found
     - Content: `{ message: "User with id '6152f0f5a7b6d3f582ed85da' not found" }`
   - Status Code: 500 Internal Server Error
@@ -210,6 +217,9 @@ Content-Type: application/json
 - **Description**: Retrieve a list of todo items based on a specific userId available in the database.
 
 - **HTTP Method**: GET
+
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
+
 
 - **Response**: An array of todo objects, each containing `_id`, `title`, `description`, `date`, and `userId`.
 
@@ -240,6 +250,8 @@ Content-Type: application/json
 ```
 
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 404 Not Found
     - Content: `{ message: "Todos not found" }`
   - Status Code: 500 Internal Server Error
@@ -257,6 +269,9 @@ Content-Type: application/json
   - `description`: The description of the todo item (String).
   - `date`: The due date of the todo item (Date).
   - `userId` (required): The user ID associated with the todo item (String).
+
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
+
 
 - **Response**: The newly created todo item object, including its assigned `_id`.
 
@@ -289,6 +304,8 @@ Content-Type: application/json
 ```
 
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 500 Internal Server Error
     - Content: `{ message: 'Error creating todo', error: error message from catching the failure }`
 
@@ -296,10 +313,16 @@ Content-Type: application/json
 ### 6. PUT /api/todos/:id
 
 - **Description**: Update an existing todo item by its `_id`.
+
 - **HTTP Method**: PUT
-- **URL**: `/api/todos/:id`
+
 - **URL Parameter**: The `id` parameter in the URL represents the `_id` of the todo item to update.
+
 - **Request Body**: The request body should include the fields you want to update, such as `title`, `description`, `date`, and `userId`.
+
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
+
+
 - **Response**: The updated todo item object.
 
 - **Example Request**:
@@ -331,6 +354,8 @@ Content-Type: application/json
 ```
 
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 404 Not Found
     - Content: `{ "message": "Todo with id '6152f0f5a7b6d3f582ed85da' not found" }`
   - Status Code: 500 Internal Server Error
@@ -340,9 +365,14 @@ Content-Type: application/json
 ### 7. DELETE /api/todos/:id
 
 - **Description**: Delete an existing todo item by its `_id`.
+
 - **HTTP Method**: DELETE
-- **URL**: `/api/todos/:id`
+
 - **URL Parameter**: The `id` parameter in the URL represents the `_id` of the todo item to delete.
+
+- **Authorization**: To access this endpoint, you must include a valid bearer token in the Authorization header of your request. The bearer token should be obtained through the authentication process. Unauthorized access will result in a 401 Unauthorized response.
+
+
 - **Response**: A success message indicating the deletion.
 
 - **Example Request**: GET /users/6152f0f5a7b6d3f582ed85da
@@ -358,6 +388,8 @@ Content-Type: application/json
 ```
 
 - **Error Response**
+  - Status Code: 401 Unauthorized
+    - Content: Problem on token
   - Status Code: 404 Not Found
     - Content: `{ "message": "Todo with id '6152f0f5a7b6d3f582ed85da' not found" }`
   - Status Code: 500 Internal Server Error
