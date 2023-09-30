@@ -9,8 +9,11 @@ const todoController = require('../controllers/todoController');
 // Import middleware
 const mw = require('../middleware/my-middleware');
 
-// Apply middleware to all method
+// Apply middleware to all method on route /todos
 router.all('/todos', mw.authenticateToken);
+
+// Apply middleware to all method on route /todos/:id
+router.all('/todos/:id', mw.authenticateToken);
 
 // Define a route to get all todos
 router.get('/todos', todoController.getTodos);
