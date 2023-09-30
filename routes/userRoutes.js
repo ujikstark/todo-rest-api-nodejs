@@ -9,8 +9,11 @@ const userController = require('../controllers/userController');
 // Import middleware
 const mw = require('../middleware/my-middleware');
 
-// Apply GET middleware
+// Apply middleware on route GET /users
 router.get('/users', mw.authenticateToken);
+
+// Apply middleware on route GET /users/:id
+router.get('/users/:id', mw.authenticateToken);
 
 // Define a route to get all users
 router.get('/users', userController.getUsers);
