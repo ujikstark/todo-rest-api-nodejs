@@ -20,6 +20,12 @@ const createUser = async (req, res) => {
       password: hashedPassword, // Store the hashed password in the database
     });
 
+    // check user exists
+    const userExist = await User.findOne({username: username});
+    if (userExist) {
+        return res.status(409).json({message: `User with username ${username} already exists`})
+    }
+
     const userToSave = await user.save();
     res.status(201).json(userToSave);
     } catch (err) {
