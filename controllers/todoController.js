@@ -6,10 +6,12 @@ const User = require('../models/user');
 // Function to create a new todo
 const createTodo = async (req, res) => {
 
-    const { title, description, date, userId} = req.body;
+    const { title, description, date} = req.body;
+
+    const userId = req.user.userId;
 
     try {
-
+        // check if user is exists
         const user = await User.findById(userId);
 
         if (!user) {
@@ -24,7 +26,6 @@ const createTodo = async (req, res) => {
             date,
             user: userId
         });
-
 
 
         const todoToSave = await todo.save();
