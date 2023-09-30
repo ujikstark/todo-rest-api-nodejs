@@ -32,7 +32,7 @@ const createUser = async (req, res) => {
 const getUsers = async (req, res) => {
 
     try {
-        const users = await User.find();
+        const users = await User.find().select('-password');
         if (users.length === 0) {
             return res.status(404).json({ message: 'Users not found' });
         }
@@ -47,7 +47,7 @@ const getUserById = async (req, res) => {
     const id = req.params.id;
 
     try {
-        const user = await User.findById(id);
+        const user = await User.findById(id).select('-password');
         if (!user) {
             return res.status(404).json({ message: `User with id '${id}' not found` });
         }
