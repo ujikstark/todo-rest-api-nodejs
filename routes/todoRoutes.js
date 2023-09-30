@@ -27,5 +27,8 @@ router.post('/todos', todoController.createTodo);
 // Define a route to update a todo by ID
 router.put('/todos/:id', todoController.updateTodo);
 
+// Define a route to delete a todo by ID
+router.delete('/todos/:id', todoController.deleteTodo);
+
 
 module.exports = router;

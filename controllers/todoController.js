@@ -56,7 +56,7 @@ const getTodos =  async (req, res) => {
 const getTodoById = async (req, res) => {
     const id = req.params.id;
 
-    const user = req.user;
+    const userId = req.user.userId;
 
     try {
         const todo = await Todo.findById(id);
@@ -64,7 +64,7 @@ const getTodoById = async (req, res) => {
             return res.status(404).json({ message: `Todo with id '${id}' not found` });
         }
 
-        if (todo.user !== user._id) {
+        if (todo.user.toString() !== userId) {
             return res.status(401).json({ message: 'this is not your resource'});
         }
 
@@ -79,39 +79,66 @@ const getTodoById = async (req, res) => {
 const updateTodo = async (req, res) => {
     const { id } = req.params; // Get the ID of the todo item to update
     const { title, description, date } = req.body; // Get updated data from the request body
-    const user = req.user;
+    const userId = req.user.userId;
 
     try {
-      // Find the todo item by ID
+        // Find the todo item by ID
+        const todo = await Todo.findById(id);
+
+        if (!todo) {
+            return res.status(404).json({ message: `Todo with id '${id}' not found` });
+        }
+
+        if (todo.user.toString() !== userId) {
+            return res.status(401).json({ message: 'this is not your resource'});
+        }
+
+        // Update the todo item with the new data
+        todo.title = title;
+        todo.description = description;
+        todo.date = date;
+
+        // Save the updated todo item
+        const updatedTodo = await todo.save();
+
+        res.status(200).json(updatedTodo);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating todo', error: error.message });
+    }
+};
+
+
+// Delete a todo item by ID
+const deleteTodo = async (req, res) => {
+    const { id } = req.params; // Get the ID of the todo item to delete
+    const userId = req.user.userId;
+
+    try {  
+      // Check if the todo item exists
       const todo = await Todo.findById(id);
   
       if (!todo) {
-        return res.status(404).json({ message: 'Todo not found' });
+        return res.status(404).json({ message: `Todo with id '${id}' not found` });
       }
 
-      if (todo.user !== user._id) {
+      if (todo.user.toString() !== userId) {
         return res.status(401).json({ message: 'this is not your resource'});
     }
   
-      // Update the todo item with the new data
-      todo.title = title;
-      todo.description = description;
-      todo.date = date;
+      // Delete the todo item
+      await Todo.findByIdAndDelete(id);
   
-      // Save the updated todo item
-      const updatedTodo = await todo.save();
-  
-      res.status(200).json(updatedTodo);
+      res.status(200).json({ message: 'Todo deleted successfully' });
     } catch (error) {
-      res.status(500).json({ message: 'Error updating todo', error: error.message });
+      res.status(500).json({ message: 'Error deleting todo', error: error.message });
     }
   };
-
 
 
 module.exports = {
     createTodo,
     getTodos,
     getTodoById,
-    updateTodo
+    updateTodo,
+    deleteTodo
 };
