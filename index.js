@@ -58,8 +58,8 @@ app.use('/api', userRoutes);
 app.use('/api', todoRoutes);
 
 
-app.listen(port, () => {
-    console.log(`listening on port ${port}`)
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`Listening on port ${port}`))
+}
 
 module.exports = app;

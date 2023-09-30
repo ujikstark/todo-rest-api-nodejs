@@ -45,5 +45,6 @@ describe('Login Route', () => {
         const response = await request(app).post('/login'); // Send a request without credentials
 
         expect(response.status).toBe(401); // Expect an unauthorized response status code
+        
     });
 });
