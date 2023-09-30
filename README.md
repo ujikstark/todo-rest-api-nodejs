@@ -2,6 +2,10 @@
 
 This Repository created for Backend Developer Internship Selection in https://www.dot.co.id/.
 
+## Design Pattern 
+
+This Project used Model-View Controller(MVC) design pattern. Why use MVC? Because it helps keep things organized:  where each part has its role (Model for data, View for presentation, Controller for managing), MVC keeps your software organized and easier to manage such as maintability, reusability, and debugging.
+
 ## API Structure
 
 This README provides a comprehensive explanation of the API structure for our application, implemented using Express.js and Mongoose. The API offers endpoints for managing users and todos. allowing users to perform CRUD operations efficiently.
@@ -361,5 +365,5 @@ Content-Type: application/json
 
 
 Please note that the examples provided above are for illustrative purposes and the actual data may vary depending on your specific application and database. Also, ensure to replace `'DATABASE_URL'` with the actual URL to your MongoDB server.
-...
+
 
